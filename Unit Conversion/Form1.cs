@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Unit_Conversion
 {
@@ -31,8 +23,11 @@ namespace Unit_Conversion
                     break;
  
                 case "Temperature":
-                    cboxInput.Items.AddRange(new string[] { "Celsius", "Fahrenheit", "Kelvin" });
-                    cboxOutput.Items.AddRange(new string[] { "Celsius", "Fahrenheit", "Kelvin" });
+                    if (!cboxInput.Items.Contains("Celsius"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "Celsius", "Fahrenheit", "Kelvin" });
+                        cboxOutput.Items.AddRange(new string[] { "Celsius", "Fahrenheit", "Kelvin" });
+                    }
                     break;
                 case "Weight / Mass":
                     cboxOutput.Items.Clear();
@@ -86,14 +81,18 @@ namespace Unit_Conversion
                 {
                     Conversion conversion = new Conversion();
                     double baseUnit = conversion.convertTemperature(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
-                    txtOutput.Text = (baseUnit / conversion.convertTemperature(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    txtOutput.Text = conversion.convertTemperature(baseUnit, cboxOutput.SelectedItem.ToString()).ToString();
                 }
                 else if (cboxUnit.SelectedItem.ToString() == "Length")
                 {
                     Conversion conversion = new Conversion();
                     double baseUnit = conversion.convertLength(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
-                    txtOutput.Text = baseUnit.ToString();
+                    txtOutput.Text = (baseUnit / conversion.convertLength(1, cboxOutput.SelectedItem.ToString())).ToString();
                 }
+            }
+            else
+            {
+                txtOutput.Text = "";
             }
         }
 
