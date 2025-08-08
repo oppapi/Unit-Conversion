@@ -98,7 +98,10 @@ namespace Unit_Conversion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(txtOutput.Text);
+            if (txtOutput.Text != "")
+            {
+                Clipboard.SetText(txtOutput.Text);
+            }
         }
 
         private void txtInput_TextChanged(object sender, EventArgs e)
@@ -123,6 +126,36 @@ namespace Unit_Conversion
                         baseUnit = conversion.convertWeight(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
                         txtOutput.Text = (baseUnit / conversion.convertWeight(1, cboxOutput.SelectedItem.ToString())).ToString();
                     break;
+
+                    case "Volume / Capacity":
+                        baseUnit = conversion.convertVolume(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertVolume(1, cboxOutput.SelectedItem.ToString())).ToString();
+                        break;
+
+                    case "Time":
+                        baseUnit = conversion.convertTime(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertTime(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    break;
+
+                    case "Speed":
+                        baseUnit = conversion.convertSpeed(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertSpeed(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    break;
+
+                    case "Area":
+                        baseUnit = conversion.convertArea(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertArea(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    break;
+
+                    case "Data Storage":
+                        baseUnit = conversion.convertDataStorage(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertDataStorage(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    break;
+
+                    case "Currency":
+                        baseUnit = conversion.convertCurrency(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertCurrency(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    break;
                 }
             }
             else
@@ -144,6 +177,16 @@ namespace Unit_Conversion
             comboBox();
             cboxInput.SelectedIndex = 0;
             cboxOutput.SelectedIndex = 1;
+        }
+
+        private void button1_MouseUp(object sender, MouseEventArgs e)
+        {
+            button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(86)))), ((int)(((byte)(196)))));
+        }
+
+        private void button1_MouseDown(object sender, MouseEventArgs e)
+        {
+            button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(86)))), ((int)(((byte)(250)))));
         }
     }
 }

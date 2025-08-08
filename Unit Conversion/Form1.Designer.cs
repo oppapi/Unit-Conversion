@@ -72,7 +72,7 @@
             this.panel2.Controls.Add(this.txtInput);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Location = new System.Drawing.Point(16, 87);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(768, 348);
             this.panel2.TabIndex = 1;
@@ -83,7 +83,7 @@
             this.cboxOutput.Font = new System.Drawing.Font("Montserrat SemiBold", 16F, System.Drawing.FontStyle.Bold);
             this.cboxOutput.FormattingEnabled = true;
             this.cboxOutput.Location = new System.Drawing.Point(400, 103);
-            this.cboxOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboxOutput.Margin = new System.Windows.Forms.Padding(4);
             this.cboxOutput.Name = "cboxOutput";
             this.cboxOutput.Size = new System.Drawing.Size(312, 45);
             this.cboxOutput.TabIndex = 7;
@@ -95,7 +95,7 @@
             this.txtOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOutput.Font = new System.Drawing.Font("Montserrat SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOutput.Location = new System.Drawing.Point(400, 164);
-            this.txtOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.Size = new System.Drawing.Size(313, 44);
             this.txtOutput.TabIndex = 6;
@@ -118,7 +118,7 @@
             "Data Storage",
             "Currency"});
             this.cboxUnit.Location = new System.Drawing.Point(195, 43);
-            this.cboxUnit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboxUnit.Margin = new System.Windows.Forms.Padding(4);
             this.cboxUnit.Name = "cboxUnit";
             this.cboxUnit.Size = new System.Drawing.Size(373, 45);
             this.cboxUnit.TabIndex = 5;
@@ -131,7 +131,7 @@
             this.cboxInput.Font = new System.Drawing.Font("Montserrat SemiBold", 16F, System.Drawing.FontStyle.Bold);
             this.cboxInput.FormattingEnabled = true;
             this.cboxInput.Location = new System.Drawing.Point(60, 103);
-            this.cboxInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboxInput.Margin = new System.Windows.Forms.Padding(4);
             this.cboxInput.Name = "cboxInput";
             this.cboxInput.Size = new System.Drawing.Size(312, 45);
             this.cboxInput.TabIndex = 2;
@@ -143,7 +143,7 @@
             this.txtInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInput.Font = new System.Drawing.Font("Montserrat SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInput.Location = new System.Drawing.Point(60, 164);
-            this.txtInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtInput.Margin = new System.Windows.Forms.Padding(4);
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(313, 44);
             this.txtInput.TabIndex = 1;
@@ -156,13 +156,15 @@
             this.button1.Font = new System.Drawing.Font("Persona Aura", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(289, 249);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(184, 55);
             this.button1.TabIndex = 0;
             this.button1.Text = "Copy";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
+            this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button1_MouseUp);
             // 
             // Form1
             // 
