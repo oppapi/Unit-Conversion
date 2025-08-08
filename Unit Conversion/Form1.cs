@@ -11,9 +11,10 @@ namespace Unit_Conversion
             cboxUnit.SelectedIndex = 0;
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox()
         {
-            switch (cboxUnit.SelectedItem){
+            switch (cboxUnit.SelectedItem)
+            {
                 case "Length":
                     if (!cboxInput.Items.Contains("millimeter"))
                     {
@@ -21,7 +22,7 @@ namespace Unit_Conversion
                         cboxOutput.Items.AddRange(new string[] { "millimeter", "centimeter", "meter", "kilometer", "inch", "foot", "yard" });
                     }
                     break;
- 
+
                 case "Temperature":
                     if (!cboxInput.Items.Contains("Celsius"))
                     {
@@ -30,42 +31,69 @@ namespace Unit_Conversion
                     }
                     break;
                 case "Weight / Mass":
-                    cboxOutput.Items.Clear();
-                    cboxInput.Items.Clear();
-                    cboxInput.Items.AddRange(new string[] { "milligram", "gram", "kilogram", "pound", "ounce" });
-                    cboxOutput.Items.AddRange(new string[] { "milligram", "gram", "kilogram", "pound", "ounce" });
+                    if (!cboxInput.Items.Contains("milligram"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "milligram", "gram", "kilogram", "pound", "ounce" });
+                        cboxOutput.Items.AddRange(new string[] { "milligram", "gram", "kilogram", "pound", "ounce" });
+                    }
                     break;
+
+                case "Volume / Capacity":
+                    if (!cboxInput.Items.Contains("milliliter"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "milliliter", "liter", "gallon", "cup", "pint" });
+                        cboxOutput.Items.AddRange(new string[] { "milliliter", "liter", "gallon", "cup", "pint" });
+                    }
+                    break;
+
                 case "Time":
-                    cboxOutput.Items.Clear();
-                    cboxInput.Items.Clear();
-                    cboxInput.Items.AddRange(new string[] { "second", "minute", "hour", "day", "week" });
-                    cboxOutput.Items.AddRange(new string[] { "second", "minute", "hour", "day", "week" });
+                    if (!cboxInput.Items.Contains("second"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "second", "minute", "hour", "day", "week" });
+                        cboxOutput.Items.AddRange(new string[] { "second", "minute", "hour", "day", "week" });
+                    }
                     break;
+
                 case "Speed":
-                    cboxOutput.Items.Clear();
-                    cboxInput.Items.Clear();
-                    cboxInput.Items.AddRange(new string[] { "meters per second", "kilometers per hour", "miles per hour", "knots" });
-                    cboxOutput.Items.AddRange(new string[] { "meters per second", "kilometers per hour", "miles per hour", "knots" });
+                    if (!cboxInput.Items.Contains("meters per second"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "meters per second", "kilometers per hour", "miles per hour", "knots" });
+                        cboxOutput.Items.AddRange(new string[] { "meters per second", "kilometers per hour", "miles per hour", "knots" });
+                    }
                     break;
+
                 case "Area":
-                    cboxOutput.Items.Clear();
-                    cboxInput.Items.Clear();
-                    cboxInput.Items.AddRange(new string[] { "square meter", "square kilometer", "square foot", "acre", "hectare" });
-                    cboxOutput.Items.AddRange(new string[] { "square meter", "square kilometer", "square foot", "acre", "hectare" });
+                    if (!cboxInput.Items.Contains("square meter"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "square meter", "square kilometer", "square foot", "acre", "hectare" });
+                        cboxOutput.Items.AddRange(new string[] { "square meter", "square kilometer", "square foot", "acre", "hectare" });
+                    }
                     break;
+
                 case "Data Storage":
-                    cboxOutput.Items.Clear();
-                    cboxInput.Items.Clear();
-                    cboxInput.Items.AddRange(new string[] { "bit", "byte", "kilobyte", "megabyte", "gigabyte" });
-                    cboxOutput.Items.AddRange(new string[] { "bit", "byte", "kilobyte", "megabyte", "gigabyte" });
+                    if (!cboxInput.Items.Contains("bit"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "bit", "byte", "kilobyte", "megabyte", "gigabyte" });
+                        cboxOutput.Items.AddRange(new string[] { "bit", "byte", "kilobyte", "megabyte", "gigabyte" });
+                    }
                     break;
+
                 case "Currency":
-                    cboxOutput.Items.Clear();
-                    cboxInput.Items.Clear();
-                    cboxInput.Items.AddRange(new string[] { "USD", "EUR", "PHP", "JPY", "GBP" });
-                    cboxOutput.Items.AddRange(new string[] { "USD", "EUR", "PHP", "JPY", "GBP" });
+                    if (!cboxInput.Items.Contains("USD"))
+                    {
+                        cboxInput.Items.AddRange(new string[] { "USD", "EUR", "PHP", "JPY", "GBP" });
+                        cboxOutput.Items.AddRange(new string[] { "USD", "EUR", "PHP", "JPY", "GBP" });
+                    }
                     break;
-            }   
+                default:
+                    MessageBox.Show("Error in input!");
+                    break;
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -77,17 +105,24 @@ namespace Unit_Conversion
         {
             if (!string.IsNullOrEmpty(txtInput.Text))
             {
-                if (cboxUnit.SelectedItem.ToString() == "Temperature")
+                Conversion conversion = new Conversion(); double baseUnit;
+                double input = double.Parse(txtInput.Text);
+                switch (cboxUnit.SelectedItem.ToString())
                 {
-                    Conversion conversion = new Conversion();
-                    double baseUnit = conversion.convertTemperature(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
-                    txtOutput.Text = conversion.convertTemperature(baseUnit, cboxOutput.SelectedItem.ToString()).ToString();
-                }
-                else if (cboxUnit.SelectedItem.ToString() == "Length")
-                {
-                    Conversion conversion = new Conversion();
-                    double baseUnit = conversion.convertLength(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
-                    txtOutput.Text = (baseUnit / conversion.convertLength(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    case "Temperature":
+                        baseUnit = conversion.convertTemperature(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = conversion.convertTemperature(baseUnit, cboxOutput.SelectedItem.ToString()).ToString();
+                    break;
+
+                    case "Length":
+                        baseUnit = conversion.convertLength(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertLength(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    break;
+
+                    case "Weight / Mass":
+                        baseUnit = conversion.convertWeight(double.Parse(txtInput.Text), cboxInput.SelectedItem.ToString());
+                        txtOutput.Text = (baseUnit / conversion.convertWeight(1, cboxOutput.SelectedItem.ToString())).ToString();
+                    break;
                 }
             }
             else
@@ -102,6 +137,13 @@ namespace Unit_Conversion
             cboxInput.Items.Clear();
             txtInput.Text = "";
             txtOutput.Text = "";
+        }
+
+        private void SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox();
+            cboxInput.SelectedIndex = 0;
+            cboxOutput.SelectedIndex = 1;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Unit_Conversion
 {
@@ -38,6 +39,31 @@ namespace Unit_Conversion
                 return x + 273.15;
             }
                 
+        }
+        public double convertWeight(double x, string unit)
+        {
+            var toBase = new Dictionary<string, double>
+            {
+                { "milligram", 0.000001 },
+                { "gram", 0.001 },
+                { "kilogram", 1 },
+                { "pound", 0.453592 },
+                { "ounce", 0.0283495 }
+            };
+            return x * toBase[unit];
+        }
+
+        public double convertVolume(double x, string unit)
+        {
+            var toBase = new Dictionary<string, double>
+            {
+                { "milligram", 0.000001 },
+                { "gram", 0.001 },
+                { "kilogram", 1 },
+                { "pound", 0.453592 },
+                { "ounce", 0.0283495 }
+            };
+            return x * toBase[unit];
         }
     }
 }
